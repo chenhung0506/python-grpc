@@ -11,7 +11,7 @@ source ${WORK_PATH}/build.sh
 ENV=dev.env
 export TAG='latest'
 export REPO=harbor.chlin.live/python
-export CONTAINER=linebot
+export CONTAINER=python-grpc
 
 getopts_help $@
 select_number $1

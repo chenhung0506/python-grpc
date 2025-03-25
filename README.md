@@ -5,10 +5,10 @@ pip install -r requirements.txt
 # build basic image chenhung0506/python-with-chrome:latest
 cd ./build_from_image && ./build.sh
 
-# build and run linebot-linux
+# build and run python-grpc
 cd ./docker && ./run.sh 1
 
-# LineBot Service deploy
+# python-grpc Service deploy
 
 部屬line server
 
@@ -83,7 +83,7 @@ vi ./docker/dev.env
 python ./docker/module/server.py
 ```
 
-## Linebot richmenu
+## python-grpc richmenu
 ```
 curl -v -X POST https://api.line.me/v2/bot/richmenu \
 -H 'Authorization: Bearer {EnSpzk7sQ04AnBwO34YukvfIRF33MeJzwlHuuwH8eCT9rUXLO6wr0fu50TNllOLh+YkK0I8Vjxx2gVllw5Im82OeAvPTc40wS7HLHS6NdcQUazxxS9myCePXHsITe2kqhCCCWHf0o57+HUo364lvqQdB04t89/1O/w1cDnyilFU=}' \
