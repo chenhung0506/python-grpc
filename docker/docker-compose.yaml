@@ -1,0 +1,51 @@
+version: "3.7"
+services:
+  # redis:
+  #   restart: always
+  #   container_name: redis
+  #   image: redis:5.0.5-alpine 
+  #   ports:
+  #     - 6379:6379
+  #   volumes:
+  #     - ~/volumes/redis-data:/data
+  #   networks: 
+  #     - nginx
+  # mysql:
+  #   image: mysql:5.7
+  #   container_name: mysql
+  #   restart: always
+  #   volumes:
+  #     - ~/volumes/mysql:/var/lib/mysql
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: password
+  #     MYSQL_USER: deployer
+  #     MYSQL_PASSWORD: password
+  #   ports:
+  #     - "3307:3306"
+  #   networks:
+  #     - nginx
+  web:
+    image: ${DOCKER_IMAGE}
+    container_name: linebot
+    # environment:
+    #   - PORT=22222
+    volumes:
+      - ~/volumes/linebot:/usr/src/app/logs
+    restart: always
+    ports: 
+      - "${PORT}:${PORT}"
+    env_file:
+      - dev.env
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:${PORT}/healthCheck || exit 1"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks: 
+      - nginx
+networks:
+  nginx:
+    external: true
+    name: nginx
+
